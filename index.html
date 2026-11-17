@@ -340,18 +340,16 @@ function exportData(){let b=new Blob([JSON.stringify(state,null,2)],{type:'appli
 function importData(ev){let f=ev.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.settings||!Array.isArray(x.entries))throw 0;state=x;persist();toast('นำเข้าข้อมูลสำเร็จ')}catch(e){toast('ไฟล์ไม่ถูกต้อง')}};r.readAsText(f)}
 function resetData(){if(!confirm('ล้างข้อมูลทั้งหมดในเครื่องนี้?'))return;localStorage.removeItem('salaryFlow');state={settings:structuredClone(defaults),entries:[],holidays:[],theme:'light'};persist();toast('ล้างข้อมูลแล้ว')}
 function localAuth(){let email=$('authEmail').value,p=$('authPass').value,c=$('authConfirm').value;if(!email||!p)return toast('กรอกอีเมลและรหัสผ่าน');if(p.length<8)return toast('รหัสผ่านควรมีอย่างน้อย 8 ตัวอักษร');if(p!==c)return toast('รหัสผ่านทั้งสองช่องไม่ตรงกัน');$('auth').classList.remove('show');toast('เข้าสู่โหมดทดลองแล้ว')}
-renderAll();
+window.supabaseAuth = supabaseAuth;
+try { renderAll(); } catch (renderError) {
+  console.error('TONG ORA initial render error:', renderError);
+  const notice = document.getElementById('authNotice');
+  if (notice) notice.textContent = 'หน้าแสดงผลบางส่วนมีปัญหา แต่ยังสามารถลองเข้าสู่ระบบได้';
+}
 $('auth').classList.add('show');
 showAuthView('login');
-window.supabaseAuth = supabaseAuth;
-// ปุ่มเข้าสู่ระบบและสมัครสมาชิกเรียก supabaseAuth() โดยตรงจาก onclick
-// เพื่อไม่ให้การผูก Event Listener ขึ้นอยู่กับ renderAll() หรือโค้ดเริ่มต้นส่วนอื่น
-initSupabaseSession().catch(err=>{
-  const notice=document.getElementById('authNotice');
-  const message='ตรวจสอบสถานะบัญชีไม่สำเร็จ: '+(err && err.message ? err.message : 'กรุณาลองใหม่อีกครั้ง');
-  if(notice) notice.textContent=message;
-  console.error('TONG ORA session initialization error:',err);
-});
+
+initSupabaseSession();
 
 // PWA install and intro animation
 let deferredInstallPrompt=null;
