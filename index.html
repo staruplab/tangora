@@ -170,7 +170,7 @@ body,[data-theme="light"] body{background:var(--bg)}
     <div class="field"><label for="authEmail">อีเมล</label><input id="authEmail" type="email" autocomplete="email" placeholder="name@example.com"></div>
     <div class="field auth-field"><label for="authPass">รหัสผ่าน</label><input id="authPass" type="password" autocomplete="current-password" placeholder="กรอกรหัสผ่านของคุณ"></div>
     <label class="show-pass"><input type="checkbox" id="showAuthPassword" onchange="toggleAuthPassword()"><span>แสดงรหัสผ่าน</span></label>
-    <button type="button" class="btn auth-primary" id="loginSubmit" style="width:100%;margin-top:18px">เข้าสู่ระบบ <span>→</span></button>
+    <button type="button" class="btn auth-primary" id="loginSubmit" onclick="supabaseAuth()" style="width:100%;margin-top:18px">เข้าสู่ระบบ <span>→</span></button>
     <div class="auth-switch">ยังไม่มีบัญชี? <button type="button" onclick="showAuthView('register')">สมัครสมาชิก</button></div>
   </section>
   <section id="registerView" hidden>
@@ -179,7 +179,7 @@ body,[data-theme="light"] body{background:var(--bg)}
     <div class="field auth-field"><label for="registerPass">รหัสผ่าน</label><input id="registerPass" type="password" autocomplete="new-password" placeholder="อย่างน้อย 8 ตัวอักษร"></div>
     <div class="field auth-field"><label for="authConfirm">ยืนยันรหัสผ่าน</label><input id="authConfirm" type="password" autocomplete="new-password" placeholder="กรอกรหัสผ่านอีกครั้ง"></div>
     <label class="show-pass"><input type="checkbox" id="showRegisterPassword" onchange="toggleRegisterPassword()"><span>แสดงรหัสผ่าน</span></label>
-    <button type="button" class="btn auth-primary" id="registerSubmit" style="width:100%;margin-top:18px">สมัครสมาชิก <span>→</span></button>
+    <button type="button" class="btn auth-primary" id="registerSubmit" onclick="supabaseAuth()" style="width:100%;margin-top:18px">สมัครสมาชิก <span>→</span></button>
     <div class="auth-switch">มีบัญชีอยู่แล้ว? <button type="button" onclick="showAuthView('login')">กลับเข้าสู่ระบบ</button></div>
   </section>
   <div class="notice" id="authNotice">ระบบจะส่งลิงก์ยืนยันไปยังอีเมลของคุณหลังสมัครสมาชิก</div>
@@ -344,46 +344,14 @@ renderAll();
 $('auth').classList.add('show');
 showAuthView('login');
 window.supabaseAuth = supabaseAuth;
-function bindAuthButtons(){
-  const loginButton = document.getElementById('loginSubmit');
-  const registerButton = document.getElementById('registerSubmit');
-  if(loginButton){
-    loginButton.addEventListener('click', async () => {
-      loginButton.disabled = true;
-      const oldText = loginButton.innerHTML;
-      loginButton.textContent = 'กำลังตรวจสอบ...';
-      try { await window.supabaseAuth(); }
-      catch(err) {
-        const message = 'เข้าสู่ระบบไม่สำเร็จ: ' + (err && err.message ? err.message : 'เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ');
-        const notice = document.getElementById('authNotice');
-        if(notice) notice.textContent = message;
-        console.error('TONG ORA login click error:', err);
-      } finally {
-        loginButton.disabled = false;
-        loginButton.innerHTML = oldText;
-      }
-    });
-  }
-  if(registerButton){
-    registerButton.addEventListener('click', async () => {
-      registerButton.disabled = true;
-      const oldText = registerButton.innerHTML;
-      registerButton.textContent = 'กำลังสมัคร...';
-      try { await window.supabaseAuth(); }
-      catch(err) {
-        const message = 'สมัครสมาชิกไม่สำเร็จ: ' + (err && err.message ? err.message : 'เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ');
-        const notice = document.getElementById('authNotice');
-        if(notice) notice.textContent = message;
-        console.error('TONG ORA signup click error:', err);
-      } finally {
-        registerButton.disabled = false;
-        registerButton.innerHTML = oldText;
-      }
-    });
-  }
-}
-bindAuthButtons();
-initSupabaseSession();
+// ปุ่มเข้าสู่ระบบและสมัครสมาชิกเรียก supabaseAuth() โดยตรงจาก onclick
+// เพื่อไม่ให้การผูก Event Listener ขึ้นอยู่กับ renderAll() หรือโค้ดเริ่มต้นส่วนอื่น
+initSupabaseSession().catch(err=>{
+  const notice=document.getElementById('authNotice');
+  const message='ตรวจสอบสถานะบัญชีไม่สำเร็จ: '+(err && err.message ? err.message : 'กรุณาลองใหม่อีกครั้ง');
+  if(notice) notice.textContent=message;
+  console.error('TONG ORA session initialization error:',err);
+});
 
 // PWA install and intro animation
 let deferredInstallPrompt=null;
