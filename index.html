@@ -170,7 +170,7 @@ body,[data-theme="light"] body{background:var(--bg)}
     <div class="field"><label for="authEmail">อีเมล</label><input id="authEmail" type="email" autocomplete="email" placeholder="name@example.com"></div>
     <div class="field auth-field"><label for="authPass">รหัสผ่าน</label><input id="authPass" type="password" autocomplete="current-password" placeholder="กรอกรหัสผ่านของคุณ"></div>
     <label class="show-pass"><input type="checkbox" id="showAuthPassword" onchange="toggleAuthPassword()"><span>แสดงรหัสผ่าน</span></label>
-    <button class="btn auth-primary" style="width:100%;margin-top:18px" onclick="supabaseAuth()">เข้าสู่ระบบ <span>→</span></button>
+    <button type="button" class="btn auth-primary" id="loginSubmit" style="width:100%;margin-top:18px">เข้าสู่ระบบ <span>→</span></button>
     <div class="auth-switch">ยังไม่มีบัญชี? <button type="button" onclick="showAuthView('register')">สมัครสมาชิก</button></div>
   </section>
   <section id="registerView" hidden>
@@ -179,7 +179,7 @@ body,[data-theme="light"] body{background:var(--bg)}
     <div class="field auth-field"><label for="registerPass">รหัสผ่าน</label><input id="registerPass" type="password" autocomplete="new-password" placeholder="อย่างน้อย 8 ตัวอักษร"></div>
     <div class="field auth-field"><label for="authConfirm">ยืนยันรหัสผ่าน</label><input id="authConfirm" type="password" autocomplete="new-password" placeholder="กรอกรหัสผ่านอีกครั้ง"></div>
     <label class="show-pass"><input type="checkbox" id="showRegisterPassword" onchange="toggleRegisterPassword()"><span>แสดงรหัสผ่าน</span></label>
-    <button class="btn auth-primary" style="width:100%;margin-top:18px" onclick="supabaseAuth()">สมัครสมาชิก <span>→</span></button>
+    <button type="button" class="btn auth-primary" id="registerSubmit" style="width:100%;margin-top:18px">สมัครสมาชิก <span>→</span></button>
     <div class="auth-switch">มีบัญชีอยู่แล้ว? <button type="button" onclick="showAuthView('login')">กลับเข้าสู่ระบบ</button></div>
   </section>
   <div class="notice" id="authNotice">ระบบจะส่งลิงก์ยืนยันไปยังอีเมลของคุณหลังสมัครสมาชิก</div>
@@ -340,7 +340,50 @@ function exportData(){let b=new Blob([JSON.stringify(state,null,2)],{type:'appli
 function importData(ev){let f=ev.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.settings||!Array.isArray(x.entries))throw 0;state=x;persist();toast('นำเข้าข้อมูลสำเร็จ')}catch(e){toast('ไฟล์ไม่ถูกต้อง')}};r.readAsText(f)}
 function resetData(){if(!confirm('ล้างข้อมูลทั้งหมดในเครื่องนี้?'))return;localStorage.removeItem('salaryFlow');state={settings:structuredClone(defaults),entries:[],holidays:[],theme:'light'};persist();toast('ล้างข้อมูลแล้ว')}
 function localAuth(){let email=$('authEmail').value,p=$('authPass').value,c=$('authConfirm').value;if(!email||!p)return toast('กรอกอีเมลและรหัสผ่าน');if(p.length<8)return toast('รหัสผ่านควรมีอย่างน้อย 8 ตัวอักษร');if(p!==c)return toast('รหัสผ่านทั้งสองช่องไม่ตรงกัน');$('auth').classList.remove('show');toast('เข้าสู่โหมดทดลองแล้ว')}
-renderAll();$('auth').classList.add('show');showAuthView('login');initSupabaseSession();
+renderAll();
+$('auth').classList.add('show');
+showAuthView('login');
+window.supabaseAuth = supabaseAuth;
+function bindAuthButtons(){
+  const loginButton = document.getElementById('loginSubmit');
+  const registerButton = document.getElementById('registerSubmit');
+  if(loginButton){
+    loginButton.addEventListener('click', async () => {
+      loginButton.disabled = true;
+      const oldText = loginButton.innerHTML;
+      loginButton.textContent = 'กำลังตรวจสอบ...';
+      try { await window.supabaseAuth(); }
+      catch(err) {
+        const message = 'เข้าสู่ระบบไม่สำเร็จ: ' + (err && err.message ? err.message : 'เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ');
+        const notice = document.getElementById('authNotice');
+        if(notice) notice.textContent = message;
+        console.error('TONG ORA login click error:', err);
+      } finally {
+        loginButton.disabled = false;
+        loginButton.innerHTML = oldText;
+      }
+    });
+  }
+  if(registerButton){
+    registerButton.addEventListener('click', async () => {
+      registerButton.disabled = true;
+      const oldText = registerButton.innerHTML;
+      registerButton.textContent = 'กำลังสมัคร...';
+      try { await window.supabaseAuth(); }
+      catch(err) {
+        const message = 'สมัครสมาชิกไม่สำเร็จ: ' + (err && err.message ? err.message : 'เกิดข้อผิดพลาดที่ไม่ทราบสาเหตุ');
+        const notice = document.getElementById('authNotice');
+        if(notice) notice.textContent = message;
+        console.error('TONG ORA signup click error:', err);
+      } finally {
+        registerButton.disabled = false;
+        registerButton.innerHTML = oldText;
+      }
+    });
+  }
+}
+bindAuthButtons();
+initSupabaseSession();
 
 // PWA install and intro animation
 let deferredInstallPrompt=null;
