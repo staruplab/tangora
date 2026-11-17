@@ -1,15 +1,15 @@
 {
   "id": "./",
-  "name": "TANGORA — Salary & OT Management",
-  "short_name": "TANGORA",
+  "name": "TONG ORA — Salary & OT Management",
+  "short_name": "TONG ORA",
   "description": "จัดการเงินเดือน ชั่วโมง OT วันลา โบนัส และรายได้ในที่เดียว",
   "lang": "th-TH",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#080d1a",
-  "theme_color": "#080d1a",
+  "background_color": "#f7f9fc",
+  "theme_color": "#f7f9fc",
   "icons": [
     {
       "src": "./icons/icon-192.png",
