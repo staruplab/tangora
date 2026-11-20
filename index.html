@@ -106,6 +106,72 @@ body,[data-theme="light"] body{background:var(--bg)}
 .slipactions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end;align-items:center}.slipactions .btn{white-space:nowrap}
 .filechip{display:inline-block;padding:8px 12px;border:1px solid var(--line);border-radius:10px;font-size:12px;margin-top:8px;word-break:break-all}
 .fcgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}.fcgrid .card{padding:14px}.fcgrid input{margin:6px 0 8px;width:100%}
+
+/* ===== TONG ORA themes: กลางวัน / กลางคืน / ตามเวลา (เช้า-บ่าย-เย็น-ค่ำ) ===== */
+body{--card:var(--panel);--accent:#4d83ed;--accent2:#7b78ef;--accent-soft:#edf3ff;--accent-ink:#376bd0;--field:#fff;--glow:#dcecff;--on-accent:#fff;--chip:#eef2f8;transition:background .5s ease,color .4s ease}
+body[data-tone=day]{--bg:#f4f8ff;--panel:#fff;--panel2:#f1f5fa;--line:#e1e8f2;--text:#1d2a40;--muted:#6f7d92;--blue:#3d7be6;--cyan:#1aa3a8;--purple:#8661da;--green:#169e72;--red:#df5f72;--amber:#c08a1f;--shadow:0 8px 26px rgba(44,65,100,.07);--accent:#3d7be6;--accent2:#6f86f0;--accent-soft:#e6f0ff;--accent-ink:#2f63c4;--field:#fff;--glow:#cfe3ff;--chip:#eaf1fb}
+body[data-tone=morning]{--bg:#f2fbf6;--panel:#fff;--panel2:#ecf7f1;--line:#d9ece2;--text:#1b3a30;--muted:#6a8a7c;--blue:#1fa38a;--cyan:#2bb673;--purple:#7b9a2e;--green:#1f9d62;--red:#d9645a;--amber:#c98f1a;--shadow:0 8px 26px rgba(30,100,70,.08);--accent:#1fa38a;--accent2:#58c27a;--accent-soft:#dff5ec;--accent-ink:#14775f;--field:#fff;--glow:#c9f0dc;--chip:#e3f4eb}
+body[data-tone=evening]{--bg:#fff5ec;--panel:#fffaf5;--panel2:#fdeee0;--line:#f1dcc9;--text:#3e2a25;--muted:#9a7d6e;--blue:#e8704a;--cyan:#e39a2d;--purple:#c2569a;--green:#4f9a5a;--red:#d8505a;--amber:#d0861a;--shadow:0 8px 26px rgba(150,80,40,.10);--accent:#e8704a;--accent2:#f0a24d;--accent-soft:#ffe7d6;--accent-ink:#b9501f;--field:#fffdfa;--glow:#ffd5b5;--chip:#fbe9da}
+body[data-tone=night]{--bg:#090e1d;--panel:#121b30;--panel2:#18243f;--line:#27365a;--text:#e9effc;--muted:#93a3c2;--blue:#6aa8ff;--cyan:#56d8d0;--purple:#a78bfa;--green:#54d6a0;--red:#ff7e91;--amber:#f5c66a;--shadow:0 14px 40px rgba(0,0,0,.4);--accent:#5b93f5;--accent2:#8a78f0;--accent-soft:#1b2c50;--accent-ink:#a9ccff;--field:#0d1527;--glow:#1b3568;--chip:#1a2644}
+body[data-tone]{background:radial-gradient(ellipse at 82% 0%,var(--glow) 0,transparent 36%),var(--bg);color:var(--text);color-scheme:light}
+body[data-theme=dark]{color-scheme:dark}
+body[data-tone] .sidebar{background:color-mix(in srgb,var(--panel) 94%,transparent);backdrop-filter:blur(16px)}
+body[data-tone] .card{background:var(--panel);border-color:var(--line);box-shadow:var(--shadow)}
+body[data-tone] .brandmark,body[data-tone] .auth-brand .brandmark{background:var(--accent-soft);color:var(--accent-ink);border:1px solid var(--line);box-shadow:none}
+body[data-tone] .btn{background:linear-gradient(110deg,var(--accent),var(--accent2));color:var(--on-accent);box-shadow:none}
+body[data-tone] .btn.secondary{background:var(--panel2);color:var(--text);border:1px solid var(--line)}
+body[data-tone] .btn.danger{background:transparent;color:var(--red);border:1px solid color-mix(in srgb,var(--red) 40%,transparent)}
+body[data-tone] .nav button.active,body[data-tone] .nav button:hover{background:var(--accent-soft);color:var(--accent-ink);box-shadow:inset 3px 0 var(--accent)}
+body[data-tone] .pill,body[data-tone] input,body[data-tone] select,body[data-tone] textarea{background:var(--field);color:var(--text);border-color:var(--line)}
+body[data-tone] .field input,body[data-tone] .field select,body[data-tone] .field textarea{background:var(--field);color:var(--text)}
+body[data-tone] .field input:focus,body[data-tone] .field select:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)}
+body[data-tone] .bar{background:linear-gradient(180deg,var(--cyan),var(--accent));box-shadow:none}
+body[data-tone] .progress span{background:linear-gradient(90deg,var(--accent),var(--cyan))}
+body[data-tone] .day{background:var(--panel2);border-color:var(--line);color:var(--text)}
+body[data-tone] .day:hover,body[data-tone] .day.selected{border-color:var(--accent);background:var(--accent-soft)}
+body[data-tone] .modal,body[data-tone] .confirm-card,body[data-tone] .authbox,body[data-tone] .authbox-modern,body[data-tone] .toast{background:var(--panel);color:var(--text);border-color:var(--line)}
+body[data-tone] .auth{background:radial-gradient(ellipse at 80% 0%,var(--glow) 0,transparent 40%),var(--bg)}
+body[data-tone] .confirm-symbol{background:var(--accent-soft);color:var(--accent-ink)}
+body[data-tone] .auth-kicker,body[data-tone] .auth-switch button{color:var(--accent)}
+body[data-tone] .intro-screen{background:radial-gradient(ellipse at 50% 40%,var(--glow) 0,var(--bg) 62%);color:var(--text)}
+body[data-tone] .intro-emblem{background:var(--accent-soft);color:var(--accent)}
+body[data-tone] .intro-calendar{color:var(--accent)}
+body[data-tone] .intro-wordmark{color:var(--text)}
+body[data-tone] .intro-wordmark span{color:var(--accent);-webkit-text-fill-color:var(--accent)}
+body[data-tone] .intro-tagline,body[data-tone] .intro-slogan{color:var(--muted)}
+body[data-tone] .intro-loader{background:var(--line)}
+body[data-tone] .intro-loader i{background:var(--accent)}
+body[data-tone] .intro-skip{background:var(--panel);border-color:var(--line);color:var(--muted)}
+body[data-tone] .upload-progress{background:var(--line)}
+body[data-tone] .upload-progress i{background:var(--accent)}
+body[data-tone] .tabs button.active{background:var(--panel);color:var(--text)}
+body[data-tone] .tag{background:var(--accent-soft);color:var(--accent-ink)}
+body[data-tone] .staticon{background:var(--accent-soft);color:var(--accent-ink)}
+body[data-tone] table,body[data-tone] .tablewrap{color:var(--text)}
+body[data-tone] .modalback{background:rgba(8,14,30,.55)}
+/* theme picker */
+.themepick{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:16px}
+.themeopt{border:2px solid var(--line);background:var(--panel2);color:var(--text);border-radius:14px;padding:12px 8px;text-align:center;font-size:12px;line-height:1.4;transition:.2s}
+.themeopt b{display:block;font-size:13px}.themeopt span{display:block;font-size:10px;color:var(--muted)}
+.themeopt i{display:flex;height:22px;border-radius:8px;overflow:hidden;margin-bottom:9px;border:1px solid var(--line)}.themeopt i u{flex:1;display:block}
+.themeopt.on{border-color:var(--accent);background:var(--accent-soft)}
+.periodbar{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.periodbar em{font-style:normal;font-size:10px;padding:5px 10px;border-radius:20px;background:var(--chip);color:var(--muted);border:1px solid transparent}
+.periodbar em.now{background:var(--accent-soft);color:var(--accent-ink);border-color:var(--accent);font-weight:700}
+@media(max-width:520px){.themepick{grid-template-columns:1fr}}
+/* shift card */
+.shiftgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:16px}
+.shiftbox{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--panel2)}
+.shiftbox h4{margin:0 0 3px;font-size:13px}.shiftbox .small{display:block;margin-bottom:10px}
+.stepper{display:flex;gap:8px;align-items:center}
+.stepper input{text-align:center;font:700 18px Inter,sans-serif;padding:9px 6px;min-width:0;width:100%;border:1px solid var(--line);border-radius:10px}
+.stepper button{flex:0 0 42px;height:42px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--text);font-size:20px;line-height:1}
+.stepper button:active{transform:scale(.95)}
+.shifttotal{margin-top:14px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px;border-radius:14px;background:var(--accent-soft);color:var(--accent-ink)}
+.shifttotal b{font:800 22px Inter,sans-serif}
+.shiftrate{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:11px;color:var(--muted);flex-wrap:wrap}
+.shiftrate input{width:90px;text-align:center;padding:7px;border:1px solid var(--line);border-radius:9px}
+@media(max-width:520px){.shiftgrid{grid-template-columns:1fr}}
 </style>
 <meta name="theme-color" content="#f7f9fc">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -114,7 +180,7 @@ body,[data-theme="light"] body{background:var(--bg)}
 <link rel="manifest" href="./manifest.json">
 <link rel="apple-touch-icon" href="./icons/icon-192.png">
 </head>
-<body data-theme="light">
+<body data-theme="light" data-tone="day">
 <div class="intro-screen" id="introScreen" aria-label="TONG ORA intro">
   <div class="intro-orbit orbit-one"></div><div class="intro-orbit orbit-two"></div>
   <div class="intro-glow"></div>
@@ -138,7 +204,7 @@ body,[data-theme="light"] body{background:var(--bg)}
 <button data-page="goals"><span class="ico">◎</span>Goals</button>
 <button data-page="settings"><span class="ico">⚙</span>Settings</button>
 </nav><div class="sidebottom"><div class="profile"><div class="avatar">TG</div><div><b id="sideName" style="font-size:12px">TONG ORA Workspace</b><small>Personal account · THB</small></div></div></div></aside>
-<main class="main"><header class="topbar"><div><div class="eyebrow">PERSONAL FINANCE WORKSPACE</div><h1 id="pageTitle">ภาพรวมการเงิน</h1></div><div class="topactions"><button class="btn secondary mobilemenu" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button><span class="pill" id="todayLabel"></span><button class="btn secondary" id="installBtn" onclick="installTANGORA()" hidden>⇩ ติดตั้งแอป</button><button class="btn secondary" id="logoutBtn" onclick="requestLogout()" hidden>ออกจากระบบ ↗</button><button class="btn secondary" onclick="toggleTheme()">◐ <span id="themeLabel">Light mode</span></button><button class="btn" onclick="openModal('entry')">＋ เพิ่มรายการ</button></div></header>
+<main class="main"><header class="topbar"><div><div class="eyebrow">PERSONAL FINANCE WORKSPACE</div><h1 id="pageTitle">ภาพรวมการเงิน</h1></div><div class="topactions"><button class="btn secondary mobilemenu" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</button><span class="pill" id="todayLabel"></span><button class="btn secondary" id="installBtn" onclick="installTANGORA()" hidden>⇩ ติดตั้งแอป</button><button class="btn secondary" id="logoutBtn" onclick="requestLogout()" hidden>ออกจากระบบ ↗</button><button class="btn secondary" onclick="toggleTheme()">◐ <span id="themeLabel">โทนกลางวัน</span></button><button class="btn" onclick="openModal('entry')">＋ เพิ่มรายการ</button></div></header>
 <section class="page active" id="page-dashboard">
 <div class="grid stats">
 <div class="card"><div class="stathead">รายได้รวมรอบนี้ <span class="staticon">↗</span></div><div class="statvalue" id="statGross">฿0</div><div class="statfoot" id="cycleRange">เงินเดือน + OT + รายได้อื่น</div></div>
@@ -152,6 +218,13 @@ body,[data-theme="light"] body{background:var(--bg)}
 <div class="grid two"><div class="card"><div class="row"><div><div class="stathead">รายได้สะสมทั้งปี</div><div class="statvalue" id="taxAnnualIncome">฿0</div><div class="statfoot">เงินเดือน + OT + รายได้พิเศษ + โบนัส</div></div><div class="staticon">฿</div></div><div class="progress" style="margin-top:15px"><span id="taxProgress" style="width:0%"></span></div><div class="row small muted" style="margin-top:9px"><span id="taxThresholdText">เกณฑ์เงินได้สุทธิที่เริ่มเสียภาษี 150,000 บาท</span><b id="taxRoom">—</b></div></div><div class="card"><div class="stathead">ภาษีทั้งปีโดยประมาณ</div><div class="statvalue" id="taxEstimate">฿0</div><div class="statfoot" id="taxableIncome">เงินได้สุทธิหลังหักค่าใช้จ่ายและค่าลดหย่อน</div><div class="notice">การคำนวณตัวอย่างใช้ค่าใช้จ่ายเงินเดือน 50% สูงสุด 100,000 บาท เดือนที่ยังไม่ถึงคาดการณ์จากเงินเดือนฐาน และอัตราภาษีขั้นบันไดทั่วไป โดยยังไม่ใช่คำแนะนำการยื่นภาษี</div></div></div>
 <div class="sectionhead"><div><h2>สรุปการทำงานรอบนี้</h2><p>OT, วันลา และรายการล่าสุด</p></div><button class="btn secondary" onclick="showPage('calendar')">เปิดปฏิทิน →</button></div>
 <div class="grid three"><div class="card"><div class="stathead">ชั่วโมง OT รวม <span class="staticon">◷</span></div><div class="statvalue" id="totalHours">0 ชม.</div><div class="statfoot" id="otBreakdown">X1 · X1.5 · X2 · X3</div></div><div class="card"><div class="stathead">วันลาคงเหลือ <span class="staticon">✧</span></div><div class="statvalue" id="leaveRemain">—</div><div class="statfoot" id="leaveUsed">กรอกสิทธิ์วันลาใน Settings</div></div><div class="card"><div class="stathead">โบนัสปีนี้ <span class="staticon">✦</span></div><div class="statvalue" id="bonusYear">฿0</div><div class="statfoot" id="bonusMeta">ยังไม่มีรายการโบนัส</div></div></div>
+<div class="sectionhead"><div><h2>กะทำงานรายเดือน</h2><p>กรอกจำนวนวันกะกลางวัน/กลางคืน · กะกลางคืนคิดค่ากะต่อวัน · แก้ไขตัวเลขได้ตลอด</p></div><select id="shiftCycle" onchange="renderShiftCard()"></select></div>
+<div class="card" id="shiftCard"><div class="shiftgrid">
+<div class="shiftbox"><h4>☀️ กะกลางวัน</h4><span class="small muted">จำนวนวันที่ทำงานรอบนี้ (ไม่มีค่ากะเพิ่ม)</span><div class="stepper"><button type="button" onclick="shiftStep('day',-1)">−</button><input id="shiftDay" type="number" min="0" max="31" step="1" inputmode="numeric" oninput="shiftPreview()" onchange="saveShift()"><button type="button" onclick="shiftStep('day',1)">＋</button></div></div>
+<div class="shiftbox"><h4>🌙 กะกลางคืน</h4><span class="small muted">จำนวนวันที่ทำงานรอบนี้ (ได้ค่ากะต่อวัน)</span><div class="stepper"><button type="button" onclick="shiftStep('night',-1)">−</button><input id="shiftNight" type="number" min="0" max="31" step="1" inputmode="numeric" oninput="shiftPreview()" onchange="saveShift()"><button type="button" onclick="shiftStep('night',1)">＋</button></div></div>
+</div>
+<div class="shiftrate"><span>ค่ากะกลางคืน</span><input id="shiftRateIn" type="number" min="0" step="1" inputmode="decimal" onchange="saveShiftRate()"><span>บาท/วัน</span></div>
+<div class="shifttotal"><div><div class="small" id="shiftSummary">—</div><div class="small" id="shiftRange" style="opacity:.8"></div></div><b id="shiftAmount">฿0</b></div></div>
 <div class="sectionhead"><div><h2>สลิปประมาณการ</h2><p>คำนวณแบบเดียวกับสลิปเงินเดือน เลือกรอบเพื่อเทียบกับสลิปจริง</p></div><div class="slipactions"><select id="slipCycle" onchange="renderSlip()"></select><button class="btn secondary" onclick="exportPayslip(false)">⬇ Excel รอบนี้</button><button class="btn secondary" onclick="exportPayslip(true)">⬇ Excel ทั้งปี</button></div></div><div class="card tablewrap"><table><tbody id="slipRows"></tbody></table></div>
 <div class="sectionhead"><div><h2>รายการล่าสุด</h2><p>บันทึก OT และรายได้อื่น ๆ</p></div></div><div class="card tablewrap"><table><thead><tr><th>วันที่</th><th>รายการ</th><th>ประเภท</th><th>จำนวนเงิน</th></tr></thead><tbody id="recentRows"></tbody></table></div>
 </section>
@@ -159,12 +232,20 @@ body,[data-theme="light"] body{background:var(--bg)}
 <section class="page" id="page-transactions"><div class="row" style="margin-bottom:16px;flex-wrap:wrap"><div><h2 style="font-size:17px;margin:0">Income & Expenses</h2><div class="small muted">จัดการรายได้พิเศษและรายการหัก</div></div><button class="btn" onclick="openModal('entry')">＋ เพิ่มรายการ</button></div><div class="grid stats"><div class="card"><div class="stathead">รายได้พิเศษปีนี้</div><div class="statvalue" id="extraIncome">฿0</div></div><div class="card"><div class="stathead">รายการหักปีนี้</div><div class="statvalue" id="deductionTotal">฿0</div></div><div class="card"><div class="stathead">โบนัสสะสมปีนี้</div><div class="statvalue" id="bonusTotal">฿0</div></div><div class="card"><div class="stathead">รายได้อื่นสุทธิปีนี้</div><div class="statvalue" id="otherNet">฿0</div></div></div><div class="card tablewrap"><table><thead><tr><th>วันที่</th><th>รายละเอียด</th><th>ประเภท</th><th>หมายเหตุ</th><th>จำนวนเงิน</th><th></th></tr></thead><tbody id="transactionRows"></tbody></table></div><div class="sectionhead"><div><h2>ประวัติการลาและเอกสารแนบ</h2><p>ดูเหตุผล วันที่ลา และภาพเอกสารประกอบ</p></div><button class="btn" onclick="openLeaveModal()">＋ บันทึกการลา</button></div><div class="card tablewrap"><table><thead><tr><th>วันที่บันทึก</th><th>ประเภทลา</th><th>ช่วงวันที่ลา</th><th>วัน/ชั่วโมง</th><th>เหตุผล</th><th>เอกสาร</th></tr></thead><tbody id="leaveRows"></tbody></table></div></section>
 <section class="page" id="page-analytics"><div class="grid two"><div class="card"><b>รายได้ย้อนหลัง</b><div class="small muted">รายได้รวมแยกตามเดือน</div><div class="chart" id="analyticsChart"></div></div><div class="card"><b>โบนัสรายปี</b><div class="small muted">จำนวนเงินและจำนวนเดือนโบนัส</div><div id="bonusYears" class="list" style="margin-top:18px"></div></div></div><div class="sectionhead"><div><h2>สรุป OT แยกตามอัตรา</h2><p>ชั่วโมงและมูลค่ารวมในปีนี้</p></div></div><div class="card" id="rateStats"></div><div class="sectionhead"><div><h2>ประวัติรายได้รายเดือน</h2><p>เงินเดือน + OT + รายได้อื่น − รายการหัก</p></div></div><div class="card tablewrap"><table><thead><tr><th>เดือน</th><th>เงินเดือน</th><th>OT</th><th>รายได้อื่น</th><th>รายการหัก</th><th>สุทธิ</th></tr></thead><tbody id="monthlyRows"></tbody></table></div></section>
 <section class="page" id="page-goals"><div class="grid two"><div class="card"><div class="eyebrow">MONTHLY TARGET</div><h2 style="font-size:20px">เป้าหมายรายได้</h2><p class="small muted">กำหนดเป้าหมายและติดตามความคืบหน้า</p><div class="field" style="margin:20px 0"><label>เป้าหมายรายได้ต่อเดือน (บาท)</label><input id="goalInput" type="number" min="0" placeholder="เช่น 45000"></div><button class="btn" onclick="requestSave(saveGoal, &quot;ยืนยันการบันทึกเป้าหมาย&quot;, &quot;ระบบจะบันทึกเป้าหมายรายได้ที่คุณกรอกไว้&quot;)">บันทึกเป้าหมาย</button></div><div class="card"><div class="eyebrow">SAVING YOUR FUTURE</div><h2 style="font-size:20px">Salary Forecast</h2><p class="small muted">ทดลองเพิ่มชั่วโมง OT เพื่อประเมินรายได้</p><div class="fcgrid" id="forecastRates"><div class="card"><div class="small muted">OT X1</div><label class="small muted">ชั่วโมง</label><input id="fcH1" type="number" min="0" step=".25" value="0" inputmode="decimal" oninput="forecast()"><b class="big" id="forecastX1">฿0</b></div><div class="card"><div class="small muted">OT X1.5</div><label class="small muted">ชั่วโมง</label><input id="fcH15" type="number" min="0" step=".25" value="0" inputmode="decimal" oninput="forecast()"><b class="big" id="forecastX15">฿0</b></div><div class="card"><div class="small muted">OT X2</div><label class="small muted">ชั่วโมง</label><input id="fcH2" type="number" min="0" step=".25" value="0" inputmode="decimal" oninput="forecast()"><b class="big" id="forecastX2">฿0</b></div><div class="card"><div class="small muted">OT X3</div><label class="small muted">ชั่วโมง</label><input id="fcH3" type="number" min="0" step=".25" value="0" inputmode="decimal" oninput="forecast()"><b class="big" id="forecastX3">฿0</b></div></div><div class="card"><div class="row"><span class="small muted">รวม OT ที่ทดลอง (<span id="forecastHrs">0</span> ชม.)</span><b class="big" id="forecastTotal">฿0</b></div><div class="row small muted" style="margin-top:8px"><span>รายได้สุทธิรอบนี้ถ้ารวม OT นี้</span><b id="forecastNet">฿0</b></div><div class="small muted" style="margin-top:8px">ฐานค่าแรง <span id="forecastHourly">฿0</span>/ชม. · กรอกชั่วโมงแยกตามอัตรา X1, X1.5, X2, X3</div></div></div></div></section>
-<section class="page" id="page-settings"><div class="grid two"><div class="card"><div class="row"><div><b>ข้อมูลเงินเดือน</b><div class="small muted">กำหนดฐานเงินเดือนและอัตราค่าล่วงเวลา</div></div><span class="tag">PROFILE</span></div><div class="formgrid" style="margin-top:18px"><div class="field full"><label>ชื่อที่แสดง</label><input id="sName" placeholder="ชื่อของคุณ"></div><div class="field full"><label>เงินเดือนฐาน (บาท/เดือน)</label><input id="sSalary" type="number" min="0"></div><div class="field"><label>ชั่วโมงทำงานปกติต่อวัน</label><input id="sHours" type="number" min="1" value="9"></div><div class="field"><label>วันทำงานต่อเดือน (ใช้คำนวณค่าแรง)</label><input id="sDays" type="number" min="1" value="30"></div><div class="field full"><div class="notice" id="hourlyPreview">—</div></div><div class="field"><label>ค่าเดินทาง (เงินได้ประจำ/เดือน)</label><input id="sAllowTravel" type="number" min="0"></div><div class="field"><label>เงินได้ประจำอื่น ๆ /เดือน</label><input id="sAllowOther" type="number" min="0"></div><div class="field"><label>ค่าเข้ากะ (บาท/วัน)</label><input id="sShiftRate" type="number" min="0" value="50"></div><div class="field"><label>อัตรา X1</label><input id="r1" type="number" step=".01" value="1"></div><div class="field"><label>อัตรา X1.5</label><input id="r15" type="number" step=".01" value="1.5"></div><div class="field"><label>อัตรา X2</label><input id="r2" type="number" step=".01" value="2"></div><div class="field"><label>อัตรา X3</label><input id="r3" type="number" step=".01" value="3"></div></div></div>
+<section class="page" id="page-settings"><div class="grid two"><div class="card"><div class="row"><div><b>ข้อมูลเงินเดือน</b><div class="small muted">กำหนดฐานเงินเดือนและอัตราค่าล่วงเวลา</div></div><span class="tag">PROFILE</span></div><div class="formgrid" style="margin-top:18px"><div class="field full"><label>ชื่อที่แสดง</label><input id="sName" placeholder="ชื่อของคุณ"></div><div class="field full"><label>เงินเดือนฐาน (บาท/เดือน)</label><input id="sSalary" type="number" min="0"></div><div class="field"><label>ชั่วโมงทำงานปกติต่อวัน</label><input id="sHours" type="number" min="1" value="9"></div><div class="field"><label>วันทำงานต่อเดือน (ใช้คำนวณค่าแรง)</label><input id="sDays" type="number" min="1" value="30"></div><div class="field full"><div class="notice" id="hourlyPreview">—</div></div><div class="field"><label>ค่าเดินทาง (เงินได้ประจำ/เดือน)</label><input id="sAllowTravel" type="number" min="0"></div><div class="field"><label>เงินได้ประจำอื่น ๆ /เดือน</label><input id="sAllowOther" type="number" min="0"></div><div class="field"><label>ค่ากะกลางคืน (บาท/วัน)</label><input id="sShiftRate" type="number" min="0" value="50"></div><div class="field"><label>อัตรา X1</label><input id="r1" type="number" step=".01" value="1"></div><div class="field"><label>อัตรา X1.5</label><input id="r15" type="number" step=".01" value="1.5"></div><div class="field"><label>อัตรา X2</label><input id="r2" type="number" step=".01" value="2"></div><div class="field"><label>อัตรา X3</label><input id="r3" type="number" step=".01" value="3"></div></div></div>
 <div class="card"><b>รอบเงินเดือน</b><div class="small muted">กำหนดวันตัดรอบและวันเงินเดือนออก</div><div class="formgrid" style="margin-top:18px"><div class="field"><label>วันเริ่มรอบ (คำนวณอัตโนมัติ)</label><input id="sCutStart" type="number" min="1" max="31" value="26" readonly></div><div class="field"><label>วันตัดรอบ (วันสุดท้ายของรอบ 1–31)</label><input id="sCutEnd" type="number" min="1" max="31" value="30"></div><div class="field"><label>วันเงินเดือนออก (ของเดือนถัดจากรอบตัด)</label><input id="sPayday" type="number" min="1" max="31" value="25"></div><div class="field"><label>เป้าหมายรายได้ต่อเดือน</label><input id="sGoal" type="number" min="0"></div></div><div class="notice">ระบบจะใช้วันเงินเดือนออกเพื่อคำนวณจำนวนวันคงเหลือ และใช้รอบตัดเงินเดือนในการจัดกลุ่มข้อมูล</div></div>
 <div class="card"><b>สิทธิ์วันลา</b><div class="small muted">กำหนดสิทธิ์รายปีได้เอง ปรับเพิ่มได้ทุกปี (วัน)</div><div class="formgrid" style="margin-top:18px"><div class="field"><label>ลาพักร้อน</label><input id="leaveAnnual" type="number" min="0" value="6"></div><div class="field"><label>ลาป่วย</label><input id="sickAnnual" type="number" min="0" value="30"></div><div class="field"><label>ลากิจ</label><input id="personalAnnual" type="number" min="0" value="3"></div><div class="field"><label>ลาอื่น ๆ</label><input id="otherAnnual" type="number" min="0" value="0"></div></div></div>
 <div class="card"><b>รายการหักประจำ</b><div class="small muted">ตั้งค่ารายการหักที่เกิดขึ้นทุกเดือน</div><div class="formgrid" style="margin-top:18px"><div class="field"><label>ค่าบ้าน</label><input id="dedHome" type="number" min="0"></div><div class="field"><label>ค่าเดินทาง</label><input id="dedTravel" type="number" min="0"></div><div class="field"><label>ประกันสังคม</label><input id="dedSocial" type="number" min="0"></div><div class="field"><label>ภาษีหัก ณ ที่จ่าย</label><input id="dedTax" type="number" min="0"></div><div class="field"><label>กองทุนสำรองเลี้ยงชีพ</label><input id="dedFund" type="number" min="0"></div><div class="field"><label>รายการหักอื่น ๆ</label><input id="dedOther" type="number" min="0"></div></div></div>
 <div class="card"><b>ประมาณการภาษีเงินได้บุคคลธรรมดา</b><div class="small muted">ตั้งสมมติฐานค่าลดหย่อนเพิ่มเติมเพื่อประมาณการรายปี</div><div class="formgrid" style="margin-top:18px"><div class="field"><label>ค่าลดหย่อนส่วนตัว (บาท)</label><input id="taxPersonal" type="number" value="60000"></div><div class="field"><label>ค่าลดหย่อนอื่น ๆ (บาท)</label><input id="taxOther" type="number" value="0"></div></div><div class="notice">เป็นค่าประมาณเพื่อวางแผนเท่านั้น ต้องตรวจสอบสิทธิ์ลดหย่อนและกฎหมายภาษีของปีภาษีนั้นก่อนยื่นจริง</div></div>
-<div class="card"><b>ธีมและการแสดงผล</b><div class="small muted">เลือกโหมดสว่าง โหมดมืด หรือสลับอัตโนมัติตามเวลา</div><div class="formgrid" style="margin-top:18px"><div class="field full"><label>โหมดแสดงผล</label><select id="themeMode" onchange="setThemeMode(this.value)"><option value="light">โหมดสว่าง</option><option value="dark">โหมดมืด</option><option value="auto">ตามเวลา (อัตโนมัติ)</option></select></div><div class="field"><label>เริ่มโหมดมืด</label><input id="darkFrom" type="time" value="18:00" onchange="setThemeTimes()"></div><div class="field"><label>กลับโหมดสว่าง</label><input id="darkTo" type="time" value="06:00" onchange="setThemeTimes()"></div></div><div class="notice" id="themeNote"></div></div>
+<div class="card"><b>ธีมและการแสดงผล</b><div class="small muted">เลือกโทนกลางวัน โทนกลางคืน หรือให้เปลี่ยนสีตามช่วงเวลาอัตโนมัติ</div>
+<div class="themepick" id="themePick">
+<button type="button" class="themeopt" data-mode="light" onclick="setThemeMode('light')"><i><u style="background:#f4f8ff"></u><u style="background:#fff"></u><u style="background:#3d7be6"></u></i><b>☀️ โทนกลางวัน</b><span>สว่าง สบายตา</span></button>
+<button type="button" class="themeopt" data-mode="dark" onclick="setThemeMode('dark')"><i><u style="background:#090e1d"></u><u style="background:#18243f"></u><u style="background:#5b93f5"></u></i><b>🌙 โทนกลางคืน</b><span>มืด ถนอมสายตา</span></button>
+<button type="button" class="themeopt" data-mode="auto" onclick="setThemeMode('auto')"><i><u style="background:#dff5ec"></u><u style="background:#e6f0ff"></u><u style="background:#ffe7d6"></u><u style="background:#18243f"></u></i><b>🕒 ตามเวลา</b><span>เปลี่ยนสีตามช่วงวัน</span></button>
+</div>
+<div class="formgrid" style="margin-top:16px"><div class="field"><label>เริ่มโทนกลางคืน</label><input id="darkFrom" type="time" value="18:00" onchange="setThemeTimes()"></div><div class="field"><label>สิ้นสุดโทนกลางคืน</label><input id="darkTo" type="time" value="06:00" onchange="setThemeTimes()"></div></div>
+<div class="periodbar" id="periodBar"></div>
+<div class="notice" id="themeNote"></div></div>
 <div class="card"><b>การจัดเก็บข้อมูล</b><div class="small muted">ต้นแบบนี้เก็บข้อมูลไว้ในเบราว์เซอร์เครื่องนี้</div><div class="actions" style="justify-content:flex-start"><button class="btn secondary" onclick="exportData()">ส่งออกข้อมูล JSON</button><button class="btn secondary" onclick="document.getElementById('importFile').click()">นำเข้าข้อมูล</button><input type="file" id="importFile" accept=".json" hidden onchange="importData(event)"><button class="btn danger" onclick="resetData()">ล้างข้อมูลทั้งหมด</button></div></div></div><div class="actions"><button class="btn" onclick="requestSave(saveSettings, &quot;ยืนยันการบันทึกการตั้งค่า&quot;, &quot;ตรวจสอบข้อมูลเงินเดือนและอัตรา OT ก่อนยืนยันบันทึก&quot;)">บันทึกการตั้งค่าทั้งหมด</button></div></section>
 </main></div>
 <div class="modalback" id="modal"><div class="modal"><div class="row"><h2 id="modalTitle">เพิ่มรายการ</h2><button class="btn secondary" onclick="closeModal()">✕</button></div><p id="modalDesc">บันทึกข้อมูลลงในระบบ</p><div id="modalBody"></div><div class="actions"><button class="btn secondary" onclick="closeModal()">ยกเลิก</button><button class="btn" id="modalSave">บันทึกข้อมูล</button></div></div></div>
@@ -208,6 +289,7 @@ function migrateSettings(old,st){
   }
   st.v=2;return st;
 }
+function cleanShifts(o){const r={};if(o&&typeof o==='object')Object.entries(o).forEach(([k,v])=>{if(/^\d{4}-\d{2}$/.test(k)&&v&&typeof v==='object')r[k]={day:Math.max(0,num(v.day)),night:Math.max(0,num(v.night))}});return r}
 function normalizeState(x){
   x=(x&&typeof x==='object')?x:{};
   const d=structuredClone(defaults),s=(x.settings&&typeof x.settings==='object')?x.settings:{};
@@ -217,6 +299,7 @@ function normalizeState(x){
       id:String(e.id??'').replace(/[^A-Za-z0-9_-]/g,'')||(Date.now().toString(36)+Math.random().toString(36).slice(2,7)),
       image:(typeof e.image==='string'&&(e.image.startsWith('data:image/')||e.image.startsWith('data:application/pdf;')))?e.image:''})),
     holidays:(Array.isArray(x.holidays)?x.holidays:[]).filter(e=>e&&typeof e==='object'&&typeof e.date==='string').map(e=>({...e,id:String(e.id??'').replace(/[^A-Za-z0-9_-]/g,'')||(Date.now().toString(36)+Math.random().toString(36).slice(2,7)),type:e.type==='normal'?'normal':'special'})),
+    shifts:cleanShifts(x.shifts),
     theme:x.theme==='dark'?'dark':'light'};
 }
 function loadLocalState(){try{return normalizeState(JSON.parse(localStorage.getItem('salaryFlow')||'null'))}catch(err){return normalizeState(null)}}
@@ -315,7 +398,7 @@ async function signOutTANGORA(){
   const {error}=await window.supabaseClient.auth.signOut();if(error){toast(error.message);return}
   currentUser=null;cloudReady=false;cloudDirty=false;setLS(lastUserKey,null);setLS(pendingKey,null);
   try{localStorage.removeItem('salaryFlow')}catch(err){}
-  state=normalizeState({theme:state.theme});renderAll();
+  state=normalizeState({theme:state.theme,themeMode:state.themeMode,autoDark:state.autoDark});renderAll();
   $('auth').classList.add('show');if($('logoutBtn'))$('logoutBtn').hidden=true;showAuthView('login');toast('ออกจากระบบแล้ว');
 }
 async function initSupabaseSession(){
@@ -381,23 +464,49 @@ function entriesOf(k){return state.entries.filter(e=>isMonth(e,k))}
 function totals(k){
   let s=state.settings,es=entriesOf(k),by=otBreakdown(es),ot=round2(Object.values(by).reduce((a,x)=>a+x.v,0)),
   extra=es.filter(e=>['income','bonus','shift'].includes(e.kind)).reduce((a,e)=>a+num(e.amount),0),shiftE=es.filter(e=>e.kind==='shift'),shift=shiftE.reduce((a,e)=>a+num(e.amount),0),shiftDays=shiftE.reduce((a,e)=>a+num(e.days),0),
+  sh=monthShift(k),shiftM=round2(sh.night*num(s.shiftRate)),
   allow=num(s.allow.travel)+num(s.allow.other),
   dedE=es.filter(e=>e.kind==='deduction').reduce((a,e)=>a+num(e.amount),0),
   dedF=Object.values(s.ded).reduce((a,b)=>a+num(b),0),
   hours=Object.values(by).reduce((a,x)=>a+x.h,0),
-  gross=round2(num(s.salary)+allow+ot+extra),ded=round2(dedE+dedF);
-  return {ot,extra,shift,shiftDays,allow,by,dedE,dedF,ded,gross,net:round2(gross-ded),hours}
+  gross=round2(num(s.salary)+allow+ot+extra+shiftM),ded=round2(dedE+dedF);
+  return {ot,extra:round2(extra+shiftM),shift:round2(shift+shiftM),shiftDays:shiftDays+sh.night,dayShift:sh.day,nightShift:sh.night,allow,by,dedE,dedF,ded,gross,net:round2(gross-ded),hours}
 }
 function showPage(p){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));$('page-'+p).classList.add('active');document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===p));let names={dashboard:'ภาพรวมการเงิน',calendar:'ปฏิทิน OT และวันลา',transactions:'รายได้และรายการหัก',analytics:'วิเคราะห์รายได้',goals:'เป้าหมายทางการเงิน',settings:'ตั้งค่าข้อมูลเงินเดือน'};$('pageTitle').textContent=names[p];$('sidebar').classList.remove('open');if(p==='calendar')renderCalendar()}
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>showPage(b.dataset.page));
 function themeCfg(){const a=state.autoDark||{};return {mode:['light','dark','auto'].includes(state.themeMode)?state.themeMode:(state.theme==='dark'?'dark':'light'),from:a.from||'18:00',to:a.to||'06:00'}}
-function isDarkNow(f,t){const m=x=>{const [h,i]=String(x).split(':').map(Number);return (h||0)*60+(i||0)},n=new Date(),c=n.getHours()*60+n.getMinutes(),a=m(f),b=m(t);return a===b?false:(a<b?(c>=a&&c<b):(c>=a||c<b))}
-function applyTheme(){const c=themeCfg(),dark=c.mode==='dark'||(c.mode==='auto'&&isDarkNow(c.from,c.to));state.theme=dark?'dark':'light';document.body.dataset.theme=state.theme;const mm=document.querySelector('meta[name=theme-color]');if(mm)mm.setAttribute('content',dark?'#080d1a':'#f7f9fc');const lb=$('themeLabel');if(lb)lb.textContent={light:'โหมดสว่าง',dark:'โหมดมืด',auto:'ตามเวลา'}[c.mode];const se=$('themeMode');if(se&&document.activeElement!==se)se.value=c.mode;const f=$('darkFrom'),o=$('darkTo');if(f&&document.activeElement!==f)f.value=c.from;if(o&&document.activeElement!==o)o.value=c.to;const nt=$('themeNote');if(nt)nt.textContent=c.mode==='auto'?('ตอนนี้ใช้โหมด'+(dark?'มืด':'สว่าง')+' · โหมดมืดตั้งแต่ '+c.from+' ถึง '+c.to):(c.mode==='dark'?'ใช้โหมดมืดตลอดเวลา':'ใช้โหมดสว่างตลอดเวลา')}
-function setThemeMode(v){state.themeMode=v;applyTheme();saveLocal()}
-function setThemeTimes(){state.autoDark={from:$('darkFrom').value||'18:00',to:$('darkTo').value||'06:00'};applyTheme();saveLocal()}
+function toMin(t){const [h,m]=String(t||'0:0').split(':').map(Number);return (h||0)*60+(m||0)}
+function isDarkNow(f,t,d=new Date()){const n=d.getHours()*60+d.getMinutes(),a=toMin(f),b=toMin(t);return a===b?false:(a<b?(n>=a&&n<b):(n>=a||n<b))}
+const TONES={morning:{label:'เช้า',icon:'🌅',meta:'#f2fbf6'},day:{label:'กลางวัน',icon:'☀️',meta:'#f4f8ff'},evening:{label:'เย็น',icon:'🌇',meta:'#fff5ec'},night:{label:'กลางคืน',icon:'🌙',meta:'#090e1d'}};
+/* ช่วงเวลา: กลางคืน = ตามที่ตั้ง · เช้า = 5 ชม.แรกหลังกลางคืนจบ · เย็น = 2 ชม.ก่อนกลางคืนเริ่ม · ที่เหลือ = กลางวัน */
+function toneNow(c,d=new Date()){if(isDarkNow(c.from,c.to,d))return 'night';const n=d.getHours()*60+d.getMinutes(),to=toMin(c.to),from=toMin(c.from),inWin=(start,len)=>{const x=(n-start+1440)%1440;return x<len};if(inWin(to,300))return 'morning';if(inWin((from-120+1440)%1440,120))return 'evening';return 'day'}
+function applyTheme(){const c=themeCfg();let tone=c.mode==='dark'?'night':c.mode==='light'?'day':toneNow(c);const dark=tone==='night';state.theme=dark?'dark':'light';document.body.dataset.theme=state.theme;document.body.dataset.tone=tone;
+const mm=document.querySelector('meta[name=theme-color]');if(mm)mm.setAttribute('content',TONES[tone].meta);
+const lb=$('themeLabel');if(lb)lb.textContent=c.mode==='auto'?'ตามเวลา · '+TONES[tone].label:(c.mode==='dark'?'โทนกลางคืน':'โทนกลางวัน');
+document.querySelectorAll('#themePick .themeopt').forEach(b=>b.classList.toggle('on',b.dataset.mode===c.mode));
+const f=$('darkFrom'),o=$('darkTo');if(f&&document.activeElement!==f)f.value=c.from;if(o&&document.activeElement!==o)o.value=c.to;
+const pb=$('periodBar');if(pb)pb.innerHTML=c.mode==='auto'?Object.entries(TONES).map(([k,v])=>`<em class="${k===tone?'now':''}">${v.icon} ${v.label}</em>`).join(''):'';
+const nt=$('themeNote');if(nt)nt.textContent=c.mode==='auto'?('ตอนนี้ใช้โทน'+TONES[tone].label+' · กลางคืน '+c.from+'–'+c.to+' · เช้า 5 ชม.หลังกลางคืนจบ · เย็น 2 ชม.ก่อนกลางคืนเริ่ม · สีเปลี่ยนเองทุกนาที'):(c.mode==='dark'?'ใช้โทนกลางคืนตลอดเวลา':'ใช้โทนกลางวันตลอดเวลา')}
+function setThemeMode(v){state.themeMode=v;applyTheme();saveLocal();cloudMark()}
+function setThemeTimes(){state.autoDark={from:$('darkFrom').value||'18:00',to:$('darkTo').value||'06:00'};applyTheme();saveLocal();cloudMark()}
+function cloudMark(){if(currentUser&&cloudReady){markPending(true);clearTimeout(cloudSaveTimer);cloudSaveTimer=setTimeout(saveCloudNow,650)}}
 function toggleTheme(){const o=['light','dark','auto'],c=themeCfg().mode;setThemeMode(o[(o.indexOf(c)+1)%3])}
-setInterval(()=>{if(themeCfg().mode==='auto')applyTheme()},60000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)applyTheme()});
-function renderAll(){applyTheme();$('todayLabel').textContent=today.toLocaleDateString('th-TH',{weekday:'short',day:'numeric',month:'short',year:'numeric'});$('sideName').textContent=state.settings.name||'My Workspace';renderDashboard();renderTransactions();renderLeaveRows();renderAnalytics();renderGoals();fillSettings();if($('page-calendar').classList.contains('active'))renderCalendar()}
+setInterval(()=>{if(themeCfg().mode==='auto')applyTheme()},30000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)applyTheme()});
+function monthShift(k){const v=(state.shifts||{})[k]||{};return {day:Math.max(0,num(v.day)),night:Math.max(0,num(v.night))}}
+function shiftCycleKeys(){const cur=cycleKey(iso(today));const set=new Set([cur]);for(let i=1;i<=11;i++)set.add(shiftKey(cur,-i));set.add(shiftKey(cur,1));Object.keys(state.shifts||{}).forEach(k=>set.add(k));return [...set].sort().reverse()}
+function renderShiftCard(){const sel=$('shiftCycle');if(!sel)return;const cur=cycleKey(iso(today)),prev=sel.value,keys=shiftCycleKeys();
+ if(sel.dataset.sig!==keys.join()){sel.innerHTML=keys.map(k=>`<option value="${k}">${monthLabel(k)} ${Number(k.slice(0,4))+543} · ${rangeText(k)}</option>`).join('');sel.dataset.sig=keys.join()}
+ sel.value=keys.includes(prev)?prev:cur;const k=sel.value,v=monthShift(k);
+ const d=$('shiftDay'),n=$('shiftNight'),r=$('shiftRateIn');
+ if(document.activeElement!==d)d.value=v.day||'';if(document.activeElement!==n)n.value=v.night||'';if(document.activeElement!==r)r.value=num(state.settings.shiftRate);
+ d.placeholder='0';n.placeholder='0';shiftPreview()}
+function shiftPreview(){const rate=num(state.settings.shiftRate),d=Math.max(0,num($('shiftDay').value)),n=Math.max(0,num($('shiftNight').value)),k=$('shiftCycle').value;
+ $('shiftAmount').textContent=money(round2(n*rate));$('shiftSummary').textContent='กลางวัน '+r1(d)+' วัน · กลางคืน '+r1(n)+' วัน × '+money(rate)+' = ค่ากะ';$('shiftRange').textContent='รอบ '+rangeText(k)+' · รวมเข้ารายได้รอบนี้อัตโนมัติ'}
+function saveShift(){const k=$('shiftCycle').value;state.shifts=state.shifts||{};const day=Math.max(0,num($('shiftDay').value)),night=Math.max(0,num($('shiftNight').value));
+ if(!day&&!night)delete state.shifts[k];else state.shifts[k]={day,night};persist();toast('บันทึกกะแล้ว')}
+function shiftStep(w,d){const el=$(w==='day'?'shiftDay':'shiftNight');el.value=Math.max(0,Math.min(31,num(el.value)+d));saveShift()}
+function saveShiftRate(){state.settings.shiftRate=Math.max(0,num($('shiftRateIn').value));persist();toast('บันทึกค่ากะกลางคืนแล้ว')}
+function renderAll(){applyTheme();$('todayLabel').textContent=today.toLocaleDateString('th-TH',{weekday:'short',day:'numeric',month:'short',year:'numeric'});$('sideName').textContent=state.settings.name||'My Workspace';renderDashboard();renderTransactions();renderLeaveRows();renderAnalytics();renderGoals();renderShiftCard();fillSettings();if($('page-calendar').classList.contains('active'))renderCalendar()}
 
 function renderSlip(){
   let sel=$('slipCycle');if(!sel)return;
@@ -466,7 +575,7 @@ function kindLabel(k){return ({ot:'OT',shift:'ค่าเข้ากะ',leave
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function exportData(){let b=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='tangora-backup.json';a.click();URL.revokeObjectURL(a.href);toast('ส่งออกข้อมูลแล้ว')}
 function importData(ev){let f=ev.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.settings||!Array.isArray(x.entries))throw 0;if(!confirm('การนำเข้าจะแทนที่ข้อมูลปัจจุบันทั้งหมด ต้องการดำเนินการต่อหรือไม่?')){ev.target.value='';return}state=normalizeState(x);persist();toast('นำเข้าข้อมูลสำเร็จ')}catch(e){toast('ไฟล์ไม่ถูกต้อง')}ev.target.value=''};r.readAsText(f)}
-function resetData(){if(!confirm(currentUser&&cloudReady?'ล้างข้อมูลทั้งหมด? ข้อมูลที่ซิงก์ออนไลน์ของบัญชีนี้จะถูกล้างด้วย':'ล้างข้อมูลทั้งหมดในเครื่องนี้?'))return;localStorage.removeItem('salaryFlow');state=normalizeState({theme:state.theme});persist();toast('ล้างข้อมูลแล้ว')}
+function resetData(){if(!confirm(currentUser&&cloudReady?'ล้างข้อมูลทั้งหมด? ข้อมูลที่ซิงก์ออนไลน์ของบัญชีนี้จะถูกล้างด้วย':'ล้างข้อมูลทั้งหมดในเครื่องนี้?'))return;localStorage.removeItem('salaryFlow');state=normalizeState({theme:state.theme,themeMode:state.themeMode,autoDark:state.autoDark});persist();toast('ล้างข้อมูลแล้ว')}
 function localAuth(){let email=$('authEmail').value,p=$('authPass').value,c=$('authConfirm').value;if(!email||!p)return toast('กรอกอีเมลและรหัสผ่าน');if(p.length<8)return toast('รหัสผ่านควรมีอย่างน้อย 8 ตัวอักษร');if(p!==c)return toast('รหัสผ่านทั้งสองช่องไม่ตรงกัน');$('auth').classList.remove('show');toast('เข้าสู่โหมดทดลองแล้ว')}
 window.supabaseAuth = supabaseAuth;
 try { renderAll(); } catch (renderError) {

@@ -1,4 +1,4 @@
-const CACHE_NAME='tangora-shell-v4';
+const CACHE_NAME='tangora-shell-v5';
 const CORE=['./','./index.html','./manifest.json','./supabase-config.js','./icons/icon-192.png','./icons/icon-512.png','./icons/icon-maskable-512.png'];
 const CDN='https://cdn.jsdelivr.net/';
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.addAll(CORE)));self.skipWaiting()});
